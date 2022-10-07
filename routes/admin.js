@@ -1,14 +1,15 @@
 const dataSet = require('./tst')
 const BusSchema = require('../schemas/BusStops')
-var i=0;
-var addStop = {}; 
+const BusRoutes = require('../schemas/BusRoutes')
+var i = 0;
+var addStop = {};
 
 // console.log(dataSet.dataSet.data[0][0])
 
 async function dataAdd() {
 
-    const document = await BusSchema.findOne({ city: "Thane" })
-    
+    const document = await BusRoutes.findOne({ city: "Thane" })
+
 
 
     console.log(dataSet.dataSet.data[i][1])
@@ -17,21 +18,20 @@ async function dataAdd() {
         $push: {
             data: {
 
-                "stopName": dataSet.dataSet.data[i][1],
-                "longitude": dataSet.dataSet.data[i][2],
-                "latitude": dataSet.dataSet.data[i][3]
+                "route": dataSet.dataSet.data[i][1],
+                "busNumber": dataSet.dataSet.data[i][2]
             }
         }
 
     }
     console.log(addStop)
     i++;
-    const saved = await BusSchema.updateOne(document, addStop)
+    const saved = await BusRoutes.updateOne(document, addStop)
     console.log(saved)
-   
+
 }
 
 
-    setInterval(dataAdd, 1000);
-    
+setInterval(dataAdd, 1000);
+
 

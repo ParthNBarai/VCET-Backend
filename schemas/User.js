@@ -18,7 +18,17 @@ const UserSchema = mongoose.Schema({
     user_id: {
         type: String,
         required: true
-    }
+    },
+    longitude:{
+        type:String,
+        required: true,
+        default:"72.9717329"
+    },
+    latitude:{
+        type:String,
+        required: true,
+        default: "19.1876776"
+    },
    
 });
 

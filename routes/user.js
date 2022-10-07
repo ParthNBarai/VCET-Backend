@@ -4,14 +4,17 @@ const jwtToken = require('../authentication/GetJwtToken')
 const UserSchema = require('../schemas/User')
 const fetchuser = require('../middleware/fetchuser')
 
+//Post route registering user : /api/v1/user/register
 router.post("/register", async (req, res) => {
-    // console.log(req.body)
+
     try {
         const newUser = new UserSchema({
             phoneNumber: req.body.phone,
             userName: req.body.userName,
             device_id: req.body.device_id,
             user_id: req.body.user_id,
+            longitude : req.body.longitude,
+            latitude : req.body.latitude
         })
         const saved = await newUser.save();
         const jsontoken = await jwtToken.tokenGenerate(req, res, newUser.phoneNumber);
@@ -27,6 +30,7 @@ router.post("/register", async (req, res) => {
     }
 })
 
+//Post route login user : /api/v1/user/login
 router.post('/login', async (req, res) => {
     try {
         const userFind = await UserSchema.findOne({ phoneNumber: req.body.phone })
@@ -48,6 +52,7 @@ router.post('/login', async (req, res) => {
     }
 })
 
+//Post route autologin user : /api/v1/user/autologin
 router.post('/autologin', fetchuser, async (req, res) => {
     try {
         const userFind = await UserSchema.findOne({ phoneNumber: req.user })
@@ -62,6 +67,8 @@ router.post('/autologin', fetchuser, async (req, res) => {
         res.status(500).json(err.message);
     }
 })
+
+// router.post()
 
 
 

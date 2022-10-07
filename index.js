@@ -2,13 +2,14 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 
-const BusSchema = require('./schemas/BusStops')
-const dataSet = require('./routes/tst')
+
 app.use(express.json());
 
+//Database connnection
 const ConnectionDB = require("./middleware/connection");
 ConnectionDB();
 
+// Routes for user : /api/v1/user/:
 app.use("/api/v1/user", require('./routes/user'))
 
 
