@@ -125,7 +125,7 @@ router.post("/create/orderId", (req, res) => {
 //Route for sending data between particular source and destination
 router.post('/find/buses' ,async (req, res) => {
     try {
-        const buses = await BusRoutes.find({ $and: [{ source: req.body.source }, { destination: req.body.destination }, { depaDate: new Date(req.body.date) }] })
+        const buses = await BusRoutes.find({ $and: [{ source: req.body.source }, { destination: req.body.destination }] })
         console.log(buses)
         res.status(200).json(buses)
     } catch (err) {
