@@ -14,22 +14,22 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    
+
     user_id: {
         type: String,
         required: true
     },
-    longitude:{
-        type:String,
+    longitude: {
+        type: String,
         required: true,
-        default:"72.9717329"
+        default: "72.9717329"
     },
-    latitude:{
-        type:String,
+    latitude: {
+        type: String,
         required: true,
         default: "19.1876776"
     },
-   
+
 });
 
 module.exports = mongoose.model('user', UserSchema);

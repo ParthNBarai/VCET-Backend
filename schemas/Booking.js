@@ -6,6 +6,11 @@ const BookSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    busNo:{
+        type:String,
+        required:true,
+        unique:true
+    },
     source :{
         type: String,
         required:true

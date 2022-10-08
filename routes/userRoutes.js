@@ -75,6 +75,7 @@ router.post('/book', fetchuser, async (req, res) => {
     try {
         const newBooking = new BookSchema({
             phoneNumber: req.user,
+            busNo : req.body.busNo,
             source: req.body.source,
             destination: req.body.destination,
             depaDate: req.body.depaDate,
@@ -93,6 +94,8 @@ router.post('/book', fetchuser, async (req, res) => {
         res.status(500).json(err.message);
     }
 })
+
+
 
 
 
