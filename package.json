@@ -3,8 +3,8 @@
   "description": "Bus Tracking System",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "start": "node server.js"
+    "devStart": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Parth Barai",
   "license": "ISC",
