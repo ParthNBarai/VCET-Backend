@@ -85,11 +85,9 @@ router.post('/book', async (req, res) => {
             source: req.body.source,
             destination: req.body.destination,
             depaDate: req.body.depaDate,
-            depaTime: req.body.depaTime,
             paymentId: req.body.paymentId,
-            orderId: req.body.orderId,
             signature: req.body.signature,
-            bookedSeatNotNo: req.body.seatNo
+            bookedSeatNo: req.body.seatNo
         })
 
         const busFind = await BusRoutes.findOne({ busNo: req.body.busNo })

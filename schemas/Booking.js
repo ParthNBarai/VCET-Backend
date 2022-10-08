@@ -23,15 +23,7 @@ const BookSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    depaTime :{
-        type: String,
-        required:true
-    },
     paymentId: {
-        type: String,
-        required: true
-    },
-    orderId: {
         type: String,
         required: true
     },
