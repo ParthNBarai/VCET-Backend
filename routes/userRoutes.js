@@ -77,7 +77,7 @@ router.post('/autologin', fetchuser, async (req, res) => {
 })
 
 //Route for booking a seat : /api/v1/user/book
-router.post('/book', fetchuser, async (req, res) => {
+router.post('/book', async (req, res) => {
     try {
         const newBooking = new BookSchema({
             phoneNumber: req.user,
@@ -126,7 +126,7 @@ router.post("/create/orderId", (req, res) => {
 router.post('/find/buses' ,async (req, res) => {
     try {
         const buses = await BusRoutes.find({ $and: [{ source: req.body.source }, { destination: req.body.destination }] })
-        console.log(buses)
+        
         res.status(200).json(buses)
     } catch (err) {
         console.log(err.message)
