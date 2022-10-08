@@ -80,7 +80,7 @@ router.post('/autologin', fetchuser, async (req, res) => {
 router.post('/book', async (req, res) => {
     try {
         const newBooking = new BookSchema({
-            phoneNumber: req.user,
+            phoneNumber: req.body.phone,
             busNo: req.body.busNo,
             source: req.body.source,
             destination: req.body.destination,
