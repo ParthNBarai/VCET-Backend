@@ -23,15 +23,7 @@ const BookSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    arriDate :{
-        type: String,
-        required:true
-    },
     depaTime :{
-        type: String,
-        required:true
-    },
-    arriTime :{
         type: String,
         required:true
     },
@@ -47,6 +39,9 @@ const BookSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    bookedSeatNo :{
+        type : String,
+    }
    
 });
 

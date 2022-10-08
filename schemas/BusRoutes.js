@@ -48,6 +48,19 @@ const BusRoutes = mongoose.Schema({
             type: String,
             required: true
         },
+    }],
+    amount: {
+        type: Number,
+        required: true
+    },
+    depaDate: {
+        type: Date,
+        required: true
+    },
+    bookedSeatNo: [{
+        type: String,
+        required: true,
+        default : "0"
     }]
 });
 

@@ -64,6 +64,8 @@ router.post('/busRoutes' , async (req,res) =>{
             "sourceCoordinates.longitude": req.body.sourceCoordinates.longitude,
             "destCoordinates.latitude": req.body.destCoordinates.latitude,
             "destCoordinates.longitude": req.body.destCoordinates.longitude,
+            amount : req.body.amount,
+            depaDate : new Date(req.body.date)
         })
         
 
@@ -77,7 +79,6 @@ router.post('/busRoutes' , async (req,res) =>{
 
         }
         const saved = await addTrip.save();
-        console.log(saved)
         res.status(200).json("Done")
     } catch (err) {
         console.log(err.message)

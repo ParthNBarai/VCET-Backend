@@ -5,6 +5,7 @@ const UserSchema = require('../schemas/User')
 const fetchuser = require('../middleware/fetchuser')
 const BookSchema = require('../schemas/Booking')
 const Razorpay = require("razorpay");
+const BusRoutes = require('../schemas/BusRoutes');
 const instance = new Razorpay({
     key_id: process.env.KEY_ID,
     key_secret: process.env.KEY_SECRET,
@@ -84,14 +85,21 @@ router.post('/book', fetchuser, async (req, res) => {
             source: req.body.source,
             destination: req.body.destination,
             depaDate: req.body.depaDate,
-            arriDate: req.body.arriDate,
             depaTime: req.body.depaTime,
-            arriTime: req.body.arriTime,
             paymentId: req.body.paymentId,
             orderId: req.body.orderId,
             signature: req.body.signature,
+            bookedSeatNotNo: req.body.seatNo
         })
 
+        const busFind = await BusRoutes.findOne({ busNo: req.body.busNo })
+        const newBookedSeat = {
+            $push: {
+                bookedSeatNo: req.body.bookedSeatNo
+            }
+        }
+        const upd = await BusRoutes.updateOne(busFind, newBookedSeat)
+        console.log(upd)
         const saved = await newBooking.save();
         res.status(200).json("Booking saved successfully!")
     } catch (err) {
@@ -114,6 +122,17 @@ router.post("/create/orderId", (req, res) => {
     });
 })
 
+//Route for sending data between particular source and destination
+router.post('/find/buses', fetchuser ,async (req, res) => {
+    try {
+        const buses = await BusRoutes.find({ $and: [{ source: req.body.source }, { destination: req.body.destination }, { depaDate: new Date(req.body.date) }] })
+        console.log(buses)
+        res.status(200).json(buses)
+    } catch (err) {
+        console.log(err.message)
+        res.status(500).json(err.message);
+    }
+})
 
 
 module.exports = router
